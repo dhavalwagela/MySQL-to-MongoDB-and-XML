@@ -1,0 +1,41 @@
+1) List of all project whose department is Software : 
+
+db.collectionForProjects.find({Dname: "Software"})
+
+{ "_id" : ObjectId("5f31cea49a71b927ada054be"), "Pname" : "ConfigMgmt", "Pnumber" : "11", "Dname" : "Software", "workers" : [ { "Fname" : "Debra", "Lname" : "Hall", "hours" : "20.0" }, { "Fname" : "Wilson", "Lname" : "Holmes", "hours" : "20.0" }, { "Fname" : "Jake", "Lname" : "Sheen", "hours" : "25.0" } ] }
+{ "_id" : ObjectId("5f31cea49a71b927ada054bf"), "Pname" : "DataMining", "Pnumber" : "13", "Dname" : "Software", "workers" : [ { "Fname" : "Alex", "Lname" : "Yu", "hours" : "18.0" } ] }
+{ "_id" : ObjectId("5f31cea49a71b927ada054c1"), "Pname" : "SearchEngine", "Pnumber" : "22", "Dname" : "Software", "workers" : [ { "Fname" : "Penny", "Lname" : "Wolowitz", "hours" : "4.0" }, { "Fname" : "Zach", "Lname" : "Geller", "hours" : "30.0" } ] }
+{ "_id" : ObjectId("5f31cea49a71b927ada054c4"), "Pname" : "OperatingSystem", "Pnumber" : "61", "Dname" : "Software", "workers" : [ { "Fname" : "Jared", "Lname" : "James", "hours" : "40.0" }, { "Fname" : "Jon", "Lname" : "Jones", "hours" : "40.0" }, { "Fname" : "Justin", "Lname" : "Mark", "hours" : "40.0" }, { "Fname" : "Brad", "Lname" : "Knight", "hours" : "40.0" }, { "Fname" : "Christina", "Lname" : "Hisel", "hours" : "4.0" }, { "Fname" : "Gerald", "Lname" : "Small", "hours" : "40.0" }, { "Fname" : "Naveen", "Lname" : "Drew", "hours" : "40.0" }, { "Fname" : "Carl", "Lname" : "Reedy", "hours" : "40.0" }, { "Fname" : "Sammy", "Lname" : "Hall", "hours" : "40.0" }, { "Fname" : "Red", "Lname" : "Bacher", "hours" : "30.0" }, { "Fname" : "Roy", "Lname" : "Lewallen", "hours" : "4.0" } ] }
+{ "_id" : ObjectId("5f31cea49a71b927ada054c5"), "Pname" : "DatabaseSystems", "Pnumber" : "62", "Dname" : "Software", "workers" : [ { "Fname" : "Evan", "Lname" : "Wallis", "hours" : "40.0" }, { "Fname" : "Josh", "Lname" : "Zell", "hours" : "48.0" }, { "Fname" : "Andy", "Lname" : "Vile", "hours" : "40.0" }, { "Fname" : "Tom", "Lname" : "Brand", "hours" : "40.0" }, { "Fname" : "Jenny", "Lname" : "Vos", "hours" : "40.0" }, { "Fname" : "Chris", "Lname" : "Carter", "hours" : "40.0" }, { "Fname" : "Erin", "Lname" : "Maxfield", "hours" : "20.0" }, { "Fname" : "Kim", "Lname" : "Ted", "hours" : "25.0" }, { "Fname" : "Arnold", "Lname" : "Head", "hours" : "40.0" }, { "Fname" : "Red", "Lname" : "Bacher", "hours" : "10.0" }, { "Fname" : "Roy", "Lname" : "Lewallen", "hours" : "4.0" } ] }
+{ "_id" : ObjectId("5f31cea49a71b927ada054c6"), "Pname" : "Middleware", "Pnumber" : "63", "Dname" : "Software", "workers" : [ { "Fname" : "Jennifer", "Lname" : "Joy", "hours" : "20.0" }, { "Fname" : "Kim", "Lname" : "Grace", "hours" : "40.0" }, { "Fname" : "Jeff", "Lname" : "Chase", "hours" : "46.0" }, { "Fname" : "Jose", "Lname" : "Barbara", "hours" : "40.0" }, { "Fname" : "Cindy", "Lname" : "Burklow", "hours" : "25.0" }, { "Fname" : "Gregory", "Lname" : "Laurie", "hours" : "25.0" }, { "Fname" : "Helga", "Lname" : "Pataki", "hours" : "40.0" }, { "Fname" : "Red", "Lname" : "Bacher", "hours" : "10.0" }, { "Fname" : "Roy", "Lname" : "Lewallen", "hours" : "4.0" } ] }
+
+
+2) List of last name of employee who works on Project ProductX 
+
+db.collectionForProjects.find({Pname: "ProductX"}, {"workers.Lname":1})
+
+{ "_id" : ObjectId("5f31cea49a71b927ada054b9"), "workers" : [ { "Lname" : "Smith" }, { "Lname" : "Carpenter" }, { "Lname" : "English" }, { "Lname" : "Lewallen" } ] }
+
+
+3) List of all project name of employee named Johny Smith 
+
+db.collectionForEmployees.find({  Fname: "Johny", Lname: "Smith" }, {"projects.Pname":1})
+
+{ "_id" : ObjectId("5f31cea49a71b927ada054d3"), "projects" : [ { "Pname" : "ProductZ" }, { "Pname" : "Reorganization" }, { "Pname" : "Newbenefits" } ] }
+
+
+4) Department name of employee named Sunil   
+
+db.collectionForEmployees.find({Fname: "Sunil"}, {Dname:1})
+
+{ "_id" : ObjectId("5f31cea49a71b927ada054cc"), "Dname" : "Networking" }
+
+
+Extra Credits part
+
+5) List of employee firstname,lastname and salary under Manager Firstname : Juan Lastname : Linda
+
+db.collectionForDepartments.find({Fname:"Juan", Lname:"Linda"}, {employees:1})
+
+{ "_id" : ObjectId("5f31cea49a71b927ada05519"), "employees" : [ { "Lname" : "Linda", "Fname" : "Juan", "Salary" : "55000.00" }, { "Lname" : "Smith", "Fname" : "Johny", "Salary" : "65000.00" }, { "Lname" : "Mary", "Fname" : "willie", "Salary" : "12000.00" }, { "Lname" : "Liang", "Fname" : "Percy", "Salary" : "55000.00" }, { "Lname" : "Ted", "Fname" : "Kim", "Salary" : "50000.00" }, { "Lname" : "Jarvis", "Fname" : "Jill", "Salary" : "36000.00" }, { "Lname" : "King", "Fname" : "Ray", "Salary" : "44500.00" } ] }
+
